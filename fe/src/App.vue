@@ -12,7 +12,7 @@ export default {
     },
     methods: {
         fetchResult() {
-            fetch(`http://localhost:5000/sugg?q=${this.q}`)
+            fetch(`sugg?q=${this.q}`)
                 .then(resp => resp.json())
                 .then(data => {
                 const json_results: Array<CourseEntry> = data.results;
@@ -30,7 +30,7 @@ export default {
             this.bucket.splice(ix, 1);
         },
     },
-    components: { SelectionTable }
+    components: { SelectionTable, TimeTable }
 }
 </script>
 

@@ -1,8 +1,10 @@
+#!/usr/bin/python
 import camelot
 import numpy as np
 import pandas as pd
 import pickle
 import os
+import sys
 import glob
 
 exam_dt = r'[A-Z]+\s*[0-9]+\s*[A-Z.]+\s*[0-9]+\s*[A-Z]*'
@@ -10,7 +12,12 @@ exam_dt_dep = 'คณะจัดสอบเอง'
 course_num = r'[A-Z]+[0-9]+\s*\(.+\)'
 course_time = r'[A-Z]{1,4}\s*[0-9]{4}-[0-9]{4}'
 
-mr30_path = '/home/ohm/Nextcloud/documents/RAM/มร30_2_65.pdf'
+if len(sys.argv) > 1:
+    mr30_path = sys.argv[1]
+else:
+    print('pass in the file name. Example:')
+    print('./parse_pdf.py ./MR30.pdf')
+    sys.exit(1)
 
 def load_page_from_cache(page_no):
     """ to avoid recomputation only
