@@ -1,0 +1,5 @@
+pages/*.csv
+pages/cache/camelot*
+*.sqlite3
+*.csv
+venv/**
