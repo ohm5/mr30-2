@@ -1,5 +1,5 @@
 import json
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 import sqlite3
 
 app = Flask(__name__)
@@ -30,7 +30,13 @@ course_suggestion("HIS")
 
 @app.route('/')
 def index():
-    return {'index': 'page'}
+    send_from_directory
+    return send_from_directory('./fe/dist', 'index.html')
+
+@app.route('/assets/<path:path>')
+def assets(path):
+    send_from_directory
+    return send_from_directory('./fe/dist/assets', path)
 
 @app.route('/sugg')
 def sugg():
@@ -40,7 +46,14 @@ def sugg():
         suggs = []
     else:
         suggs = course_suggestion(q)
+        
+        # FIXME do this in preprocess
+        for sugg in suggs:
+            sugg['course_t_start'] = f'{sugg["course_t_start"][:2]}:{sugg["course_t_start"][2:]}'
+            sugg['course_t_end'] = f'{sugg["course_t_end"][:2]}:{sugg["course_t_end"][2:]}'
 
     return { 'results': suggs }, 200, {"Access-Control-Allow-Origin": "*"} # todo remove
 
-app.run()
+
+if __name__ == "__main__":
+    app.run()
