@@ -23,7 +23,7 @@ def query_db(query, args=()):
 
 
 def course_suggestion(course):
-    cursor = query_db("SELECT * FROM courses WHERE course_num LIKE ?", args=(f'%{course}%',))
+    cursor = query_db("SELECT * FROM courses WHERE course_num LIKE ? LIMIT 50", args=(f'%{course}%',))
     return list(map(dict, cursor))
 
 course_suggestion("HIS")
@@ -41,6 +41,6 @@ def sugg():
     else:
         suggs = course_suggestion(q)
 
-    return { 'result': suggs }
+    return { 'results': suggs }, 200, {"Access-Control-Allow-Origin": "*"} # todo remove
 
 app.run()
