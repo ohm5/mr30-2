@@ -1,6 +1,6 @@
-# fly.toml file generated for mr80-x on 2022-11-05T22:25:25+07:00
+# fly.toml file generated for mr30-2 on 2022-11-08T13:09:41+07:00
 
-app = "mr80-x"
+app = "mr30-2"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

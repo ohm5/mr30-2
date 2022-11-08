@@ -8,7 +8,6 @@
   font-weight: normal;
 }
 
-a,
 .green {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
@@ -24,7 +23,7 @@ a,
 @media (min-width: 1024px) {
   body {
     display: flex;
-    place-items: center;
+    place-items: start;
   }
 
   #app {
