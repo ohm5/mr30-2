@@ -12,6 +12,12 @@ export default {
             selectedTab: 'exam-time'
         };
     },
+    mounted() {
+        const storedBucket = localStorage["bucket"]
+        if (storedBucket) {
+            this.bucket = JSON.parse(storedBucket)
+        }
+    },
     computed: {
         courseSelected() {
             return this.bucket.length > 0
@@ -30,11 +36,13 @@ export default {
             const found = this.bucket.findIndex(x => x.course_num == course.course_num) >= 0;
             if (!found) {
                 this.bucket.push(course);
+                localStorage["bucket"] = JSON.stringify(this.bucket)
             }
         },
         deselectCourse(course: CourseEntry) {
             const ix = this.bucket.findIndex(x => x.course_num == course.course_num);
             this.bucket.splice(ix, 1);
+            localStorage["bucket"] = JSON.stringify(this.bucket)
         },
         tabClasses(tabName: string) {
             return {
