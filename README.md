@@ -10,14 +10,14 @@ Link -> https://mr30-2.fly.dev
 
 Attempt to read MR30 (this one of semester 2/2565) and put in database and provide interface to query it. __Should not be used for reference__ so many problems in scraped data.
 
-## Database seeding
+## PDF scraping / database seeding
 - Server reads from an sqlite3 file. The file should be generate by python script `parse_pdf.py`. The script will work with python 3.8
 
 ```
 # install requirements first. (likely to be broken)
 pip -r requirements.txt
 
-# run
+# run this file, which will scrape the pdf file (bring your own mr30, it's not in this repo)
 ./parse_pdf.py <path to the MR30 pdf file>
 ```
 
