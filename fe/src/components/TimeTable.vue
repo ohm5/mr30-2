@@ -57,10 +57,13 @@ export default {
         small
         disable-views="['years', 'year', 'month', 'day']"
     )
+        template("#cell-content"="{ cell, view, events, goNarrower }")
+            span.vuecal__no-event(v-if="!events.length") ∅
 </template>
 
 <style scoped>
 .calendarContainer {
+    min-width: 70vw;
     height: 800px;
 }
 

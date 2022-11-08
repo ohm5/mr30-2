@@ -14,4 +14,5 @@ interface AppData {
   q: string;
   results: Array<CourseEntry>;
   bucket: Array<CourseEntry>;
+  selectedTab: 'lecture-time' | 'exam-time';
 }

@@ -89,7 +89,7 @@ th {
 }
 
 tr.exam-overlapping {
-    background-color: indianred;
+    background-color: #F26800;
     color: white;
 }
 </style>

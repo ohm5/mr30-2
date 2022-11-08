@@ -9,10 +9,11 @@ export default {
             q: '',
             results: [],
             bucket: [],
+            selectedTab: 'exam-time'
         };
     },
     computed: {
-        somethingSelected() {
+        courseSelected() {
             return this.bucket.length > 0
         }
     },
@@ -35,6 +36,15 @@ export default {
             const ix = this.bucket.findIndex(x => x.course_num == course.course_num);
             this.bucket.splice(ix, 1);
         },
+        tabClasses(tabName: string) {
+            return {
+                'active-tab': this.selectedTab == tabName,
+                'inactive-tab': !(this.selectedTab == tabName),
+            }
+        },
+        setTabActive(tabName: 'lecture-time' | 'exam-time') {
+            this.selectedTab = tabName
+        }
     },
     components: { SelectionTable, TimeTable, ExamSchedule }
 }
@@ -53,18 +63,25 @@ main
         .tableContainer
             SelectionTable(:entries='results' action-button-text='+' @action-button-clicked='selectCourse')
 
-    section
+    section(v-if="courseSelected")
         h3 วิชาที่เลือก
         .tableContainer
             SelectionTable(:entries='bucket' action-button-text='x' @action-button-clicked='deselectCourse', exam-overlapping-class-name='exam-overlapping')
+            
+    
+    section#tab-picker-section(v-if="courseSelected")
+        a(href="#/" @click="setTabActive('exam-time')")
+            div(:class='tabClasses("exam-time")') ตารางสอบ
+        a(href="#/" @click="setTabActive('lecture-time')")
+            div(:class='tabClasses("lecture-time")') ตารางเรียน
+    
+    section
+        div(v-if="courseSelected && selectedTab == 'exam-time'")
+            ExamSchedule(:items='bucket')
 
-    section(v-if="somethingSelected")
-        h3 ตารางสอบ
-        ExamSchedule(:items='bucket')
-
-    section(v-if="somethingSelected")
-        h3 ตารางเรียน
-        TimeTable(:items='bucket')
+    section
+        div(v-if="courseSelected && selectedTab == 'lecture-time'")
+            TimeTable(:items='bucket')
 
     section
         a(href="https://github.com/ohm5/mr30-2") Github
@@ -86,4 +103,28 @@ section {
     overflow: auto;
     margin: 20px 0;
 }
+
+#tab-picker-section {
+    display: flex;
+    flex-direction: row;
+}
+
+#tab-picker-section div {
+    padding: 10px
+}
+
+#tab-picker-section a {
+    text-decoration: none;
+}
+#tab-picker-section div.active-tab {
+    font-weight: bolder;
+    background-color: #3498db;
+    color: white;
+    border-radius: 20px 20px 0px 0px ;
+}
+
+#tab-picker-section div.inactive-tab {
+    color: black;
+}
+
 </style>

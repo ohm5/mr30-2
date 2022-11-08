@@ -47,7 +47,8 @@ export default {
                 return {
                     start: `${examDate} ${letterToTime[x.exam_t].start}`,
                     end: `${examDate} ${letterToTime[x.exam_t].end}`,
-                    title: x.course_num,
+                    title: `[${x.exam_t}] ${x.course_num}`,
+                    class: `event-exam-${x.exam_t}`
                 }
             })
         },
@@ -66,15 +67,16 @@ export default {
             ":selected-date"="firstDateOfMonth"
             hideViewSelector
             small
-            disable-views="['years', 'year', 'week', 'day']")
+            disable-views="['years', 'year', 'week', 'day']"
+            events-on-month-view="short")
 </template>
 
 <style scoped>
 .allCalendarContainer {
-    height: 300px;
+    height: 800px;
 }
 .calendarContainer {
-    height: 300px;
+    height: 800px;
 }
 
 </style>
@@ -90,12 +92,29 @@ export default {
     color: white;
 }
 
-.vuecal--month-view .vuecal__cell--has-events {
-    background-color: #3498db;
+
+.vuecal--month-view .vuecal__cell {height: 120px;}
+
+.vuecal--month-view .vuecal__cell-content {
+  justify-content: flex-start;
+  height: 100%;
+  align-items: flex-end;
+}
+
+.vuecal--month-view .vuecal__cell-date {padding: 4px;}
+.vuecal--month-view .vuecal__no-event {display: none;}
+
+.event-exam-A {
+    background-color: #A3CCAB;
+    color: black;
+}
+.event-exam-B {
+    background-color: #34675C;
     color: white;
 }
-.vuecal--month-view .vuecal__cell-events-count {
-    display: none;
+.event-exam-C {
+    background-color: #053D38;
+    color: white;
 }
 
 </style>
