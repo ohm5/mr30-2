@@ -7,7 +7,7 @@ interface CourseEntry {
   course_t_start: string;
   course_t_end: string;
   exam_d: string;
-  exam_t: string;
+  exam_t: 'A'|'B'|'C';
 }
 
 interface AppData {

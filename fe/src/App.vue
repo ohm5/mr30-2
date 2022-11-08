@@ -1,5 +1,6 @@
 <script lang="ts">
 import TimeTable from './components/TimeTable.vue'
+import ExamSchedule from './components/ExamSchedule.vue'
 import 'vue-cal/dist/vuecal.css'
 import SelectionTable from './components/SelectionTable.vue';
 export default {
@@ -30,7 +31,7 @@ export default {
             this.bucket.splice(ix, 1);
         },
     },
-    components: { SelectionTable, TimeTable }
+    components: { SelectionTable, TimeTable, ExamSchedule }
 }
 </script>
 
@@ -47,11 +48,14 @@ main
   section
     h3 วิชาที่เลือก
     .tableContainer
-      SelectionTable(:entries='bucket' action-button-text='x' @action-button-clicked='deselectCourse')
+      SelectionTable(:entries='bucket' action-button-text='x' @action-button-clicked='deselectCourse', exam-overlapping-class-name='exam-overlapping')
+
+  section
+    ExamSchedule(:items='bucket')
 
   section
     TimeTable(:items='bucket')
-
+    
 </template>
 
 <style scoped>

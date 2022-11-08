@@ -13,7 +13,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/sugg': 'http://localhost:5000'
+      '/sugg': {
+        target: 'http://127.0.0.1:5000',
+        changeOrigin: true,
+      }
     },
   }
 })

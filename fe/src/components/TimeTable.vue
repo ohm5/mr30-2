@@ -24,26 +24,22 @@ export default {
     },
     computed: {
         events() {
-            var xs = this.items.map((x: CourseEntry) => {
+            return this.items.map((x: CourseEntry) => {
                 return {
                     start: `${dates[x.course_d]} ${x.course_t_start}`,
                     end: `${dates[x.course_d]} ${x.course_t_end}`,
                     title: x.course_num,
                 }
             })
-            console.log(xs)
-            return xs
         },
         timeFrom() {
             const xs = this.items.map(x => parseInt(x.course_t_start.slice(0, 2)))
-            console.log(xs)
             return Math.min(...xs) * 60
         },
         timeTo() {
             const xs = this.items.map(x => parseInt(x.course_t_end.slice(0, 2)))
-            console.log(xs)
             return (Math.max(...xs) + 1) * 60
-        }
+        },
     },
 }
 
@@ -63,11 +59,14 @@ export default {
     )
 </template>
 
-<style>
+<style scoped>
 .calendarContainer {
     height: 800px;
 }
 
+</style>
+
+<style>
 .weekday-label > span:last-child {
     visibility: collapse;
 }
