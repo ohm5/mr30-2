@@ -40,6 +40,9 @@ export default {
           var classes: any = {}
           classes[this.examOverlappingClassName] = this.overlappingCourseNames.includes(course_num)
           return classes
+      },
+      examDateUndefined(date: string) {
+          return date == undefinedExamDate
       }
     }
 }
@@ -59,7 +62,8 @@ table#resultTable
             td {{ entry.course_num }}
             td {{ entry.credit }}
             td {{ entry.course_d }} {{ entry.course_t_start }} - {{ entry.course_t_end }}
-            td {{ entry.exam_d.split(' ')[0] }} {{ entry.exam_t }}
+            td("v-if"="examDateUndefined(entry.exam_d)") คณะจัดสอบเอง
+            td("v-else") {{ entry.exam_d.split(' ')[0] }} {{ entry.exam_t }}
             td
                 button(@click="$emit('action-button-clicked', entry)") {{ actionButtonText }}
 </template>
