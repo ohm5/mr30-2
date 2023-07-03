@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import camelot
 import numpy as np
 import pandas as pd
@@ -99,7 +99,7 @@ def remove_unrecognized(df, i):
     df = df[
         (df['course_num'].str.contains(f'^{course_num}$', regex=True))
         & (df['course_time'].str.contains(f'^{course_time}$', regex=True))
-        & (df['exam_dt'].str.contains(f'^({exam_dt})|({exam_dt_dep})$', regex=True))
+        & (df['exam_dt'].str.contains(f'^{exam_dt}|{exam_dt_dep}$', regex=True))
     ]
     df.to_csv(f'./pages/40-header-removed-{i}.csv', header=True, index=False)
     return df
@@ -174,7 +174,7 @@ if __name__ == '__main__':
         try:
             tables = load_page_from_cache(i)
         except Exception as e:
-            print(e)
+            print("error: ", e)
             print(f"error on page {i}, skipping")
             continue
 

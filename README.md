@@ -1,17 +1,15 @@
 MR30-2
 ===
 
-สแกนมาจาก มร.30 (รามคำแหง) ส่วนกลาง 2/2565
+สแกนมาจาก มร.30 (รามคำแหง) ส่วนกลาง
 __ข้อมูลไม่ได้ตรวจสอบ อาจสูญหาย,ไม่ถูกต้อง__ ตรวจสอบกับของจริงด้วยนะ
-
-ดูได้แต่ในเครื่องคอมเท่านั้นนะ ดูในมือถือพังมากก 🥹🥹🥹🥹
 
 Link -> https://mr30-2.fly.dev
 
-Attempt to read MR30 (this one of semester 2/2565) and put in database and provide interface to query it. __Should not be used for reference__ so many problems in scraped data.
+Attempt to read MR30 and put in database and provide interface to query it. __Should not be used for reference__ so many problems in scraped data.
 
 ## PDF scraping / database seeding
-- Server reads from an sqlite3 file. The file should be generate by python script `parse_pdf.py`. The script will work with python 3.8
+- Server reads from an sqlite3 file. The file should be generate by python script `parse_pdf.py`. The script will work with python 3.9
 
 ```
 # install requirements first. (likely to be broken)
