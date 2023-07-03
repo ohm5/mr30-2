@@ -90,7 +90,7 @@ main
     
     section
         div(v-if="courseSelected && selectedTab == 'exam-time'")
-            a(v-bind:href="icsStream")
+            a(v-bind:href="icsStream" download='ram_exam.ics')
                 div ดาวน์โหลด ICS
             ExamSchedule(:items='bucket')
 
