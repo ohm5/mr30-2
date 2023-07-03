@@ -9,6 +9,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "ics": "^3.2.0",
     "vue": "^3.2.41",
     "vue-cal": "^4.8.1"
   },

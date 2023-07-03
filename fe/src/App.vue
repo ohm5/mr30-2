@@ -3,6 +3,8 @@ import 'vue-cal/dist/vuecal.css'
 import TimeTable from './components/TimeTable.vue'
 import ExamSchedule from './components/ExamSchedule.vue'
 import SelectionTable from './components/SelectionTable.vue';
+import { getIcsStream } from './ics'
+
 export default {
     data(): AppData {
         return {
@@ -21,6 +23,9 @@ export default {
     computed: {
         courseSelected() {
             return this.bucket.length > 0
+        },
+        icsStream() {
+            return `data:text/calendar,${encodeURIComponent(getIcsStream(this.bucket))}`
         }
     },
     methods: {
@@ -61,7 +66,7 @@ export default {
 <template lang="pug">
 main
     section
-        div มร.30 ส่วนกลาง 2/2565
+        div มร.30 ส่วนกลาง 1/66
         div(style="color: red") ไม่ได้ตรวจสอบ อาจสูญหาย,ไม่ถูกต้อง ตรวจสอบกับของจริงด้วยนะ
 
         h3 ค้นหา
@@ -85,6 +90,8 @@ main
     
     section
         div(v-if="courseSelected && selectedTab == 'exam-time'")
+            a(v-bind:href="icsStream")
+                div ดาวน์โหลด ICS
             ExamSchedule(:items='bucket')
 
     section

@@ -3,14 +3,13 @@
 // @ts-ignore
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
+import { undefinedExamDate } from '@/constants'
 
 const letterToTime = {
     "A": {start: "09:00", end: "12:00"},
     "B": {start: "14:00", end: "16:30"},
     "C": {start: "17:00", end: "19:00"},
 }
-
-const undefinedExamDate = "1970-01-01 00:00:00"
 
 export default {
     components: { VueCal },
@@ -67,7 +66,7 @@ export default {
             ":selected-date"="firstDateOfMonth"
             hideViewSelector
             small
-            disable-views="['years', 'year', 'week', 'day']"
+            disable-views=["years", "year", "week", "day"]
             events-on-month-view="short")
 </template>
 
