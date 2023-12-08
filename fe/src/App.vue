@@ -66,7 +66,7 @@ export default {
 <template lang="pug">
 main
     section
-        div มร.30 ส่วนกลาง 1/66
+        div มร.30 ส่วนกลาง 2/66
         div(style="color: red") ไม่ได้ตรวจสอบ อาจสูญหาย,ไม่ถูกต้อง ตรวจสอบกับของจริงด้วยนะ
 
         h3 ค้นหา

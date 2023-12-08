@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import camelot
 import numpy as np
 import pandas as pd
@@ -6,6 +5,7 @@ import pickle
 import os
 import sys
 import glob
+import pathlib
 
 exam_dt = r'[A-Z]+\s*[0-9]+\s*[A-Z.]+\s*[0-9]+\s*[A-Z]*'
 exam_dt_dep = 'คณะจัดสอบเอง'
@@ -172,6 +172,7 @@ def write_sqlite(df):
     return
 
 if __name__ == '__main__':
+    pathlib.Path('./pages/cache').mkdir(parents=True, exist_ok=True)
 
     # preprocess
     for i in range(0, 179):
