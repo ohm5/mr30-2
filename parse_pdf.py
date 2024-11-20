@@ -28,11 +28,11 @@ def load_page_from_cache(page_no):
         with open(cache_path, 'rb') as h:
             tables = pickle.load(h)
     else:
-        print(f"no cache for this page at: {cache_path}")
+        print(f"no cache for this page ({page_no}) at: {cache_path}")
         try:
-            tables = camelot.read_pdf(mr30_path, flavor='stream', pages=str(i), edge_tol=500, backend='poppler')
+            tables = camelot.read_pdf(mr30_path, flavor='stream', pages=str(page_no), edge_tol=10, backend='poppler')
         except ZeroDivisionError:
-            tables = camelot.read_pdf(mr30_path, pages=str(i), backend='poppler')
+            tables = camelot.read_pdf(mr30_path, pages=str(page_no), backend='poppler')
 
         with open(cache_path, 'wb') as h:
             pickle.dump(tables, h)
